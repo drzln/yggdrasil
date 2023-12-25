@@ -5,10 +5,11 @@ Vagrant.configure(%(2)) do |config|
   config.vm.box = %(generic/ubuntu2004)
 
   config.vm.provider :libvirt do |libvirt|
+    libvirt.uri                 = %(qemu+unix:///system)
     libvirt.driver              = %(kvm)
-    libvirt.host                = %(localhost)
-    libvirt.connect_via_ssh     = %(false)
-    libvirt.storage_pool_name   = %(default)
+    # libvirt.host                = %(virtualized)
+    # libvirt.connect_via_ssh     = %(false)
+    # libvirt.storage_pool_name   = %(default)
   end
 
   config.vm.provider :libvirt do |v|
@@ -16,5 +17,5 @@ Vagrant.configure(%(2)) do |config|
     v.cpus    = 2
   end
 
-  config.vm.network %(private_network), type: %(dhcp)
+  # config.vm.network %(private_network), type: %(dhcp)
 end
