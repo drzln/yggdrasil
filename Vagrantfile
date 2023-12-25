@@ -11,7 +11,7 @@ Vagrant.configure(%(2)) do |config|
   # end
 
   config.vm.define %(nixos2009) do |nixos|
-    # nixos.vm.synced_folder %(.), %(/vagrant), disabled: true
+    nixos.vm.synced_folder %(.), %(/vagrant), disabled: true
     nixos.nfs.verify_installed = false
 
     nixos.vm.hostname = %(seth)
