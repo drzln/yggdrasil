@@ -6,7 +6,7 @@ require_relative %(lib/pangea/version)
 
 Gem::Specification.new do |spec|
   spec.name                  = %(yddrasil)
-  spec.version               = Pangea::VERSION
+  spec.version               = Yggdrasil::VERSION
   spec.authors               = [%(drzthslnt@gmail.com)]
   spec.email                 = [%(drzthslnt@gmail.com)]
   spec.description           = %(control nix flakes repositories with ruby)
@@ -14,8 +14,9 @@ Gem::Specification.new do |spec|
   spec.homepage              = %(https://github.com/drzln/#{spec.name})
   spec.license               = %(MIT)
   spec.require_paths         = [%(lib)]
-  spec.executables << %(pangea)
   spec.required_ruby_version = %(>= #{`cat .ruby-version`})
+
+  spec.executables << %(yggdrasil)
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
