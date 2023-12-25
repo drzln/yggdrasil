@@ -2,10 +2,10 @@
 
 lib = File.expand_path(%(lib), __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require_relative %(lib/yddrasil/version)
+require_relative %(lib/yggdrasil/version)
 
 Gem::Specification.new do |spec|
-  spec.name                  = %(yddrasil)
+  spec.name                  = %(yggdrasil)
   spec.version               = Yggdrasil::VERSION
   spec.authors               = [%(drzthslnt@gmail.com)]
   spec.email                 = [%(drzthslnt@gmail.com)]
