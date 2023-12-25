@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-[ -z "$(which git)" ] && nix-env -iA nixos.git
-which git
