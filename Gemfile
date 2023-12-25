@@ -22,5 +22,5 @@ end
 
 group :production do
   local_gem %(abstract-synthesizer)
-  gem :yddrasil, path: %(./src)
+  gem %(yddrasil), path: %(./src)
 end
