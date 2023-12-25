@@ -2,20 +2,36 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(%(2)) do |config|
-  config.vm.box = %(generic/ubuntu2004)
+  # config.vm.define %(ubuntu2004) do |ubuntu|
+  #   ubuntu.vm.box = %(generci/ubuntu2004)
+  #   ubuntu.vm.provider :libvirt do |p|
+  #     p.memory  = 4096
+  #     p.cpus    = 4
+  #   end
+  # end
 
-  config.vm.provider :libvirt do |libvirt|
-    libvirt.uri                 = %(qemu+unix:///system)
-    libvirt.driver              = %(kvm)
-    # libvirt.host                = %(virtualized)
-    # libvirt.connect_via_ssh     = %(false)
-    # libvirt.storage_pool_name   = %(default)
+  config.vm.define %(nixos2009) do |nixos|
+    nixos.vm.synced_folder %(.), %(/vagrant), disabled: true
+    nixos.nfs.verify_installed = false
+
+    nixos.vm.hostname = %(seth)
+    nixos.vm.network %(private_network), ip: %(192.168.10.2)
+
+    nixos.vm.box = %(hennersz/nixos-23.05)
+    nixos.vm.provider :libvirt do |p|
+      p.memory  = 4096
+      p.cpus    = 4
+    end
+
+    nixos.vm.provision %(shell), path: %(provision_hennersz_nixos_2305.sh)
+
+    # nixos.vm.provision \
+    #   :nixos,
+    #   run: %(always),
+    #   expression: {
+    #     environment: {
+    #       systemPackages: [:htop]
+    #     }
+    #   }
   end
-
-  config.vm.provider :libvirt do |v|
-    v.memory  = 1024
-    v.cpus    = 2
-  end
-
-  # config.vm.network %(private_network), type: %(dhcp)
 end
