@@ -1,3 +1,5 @@
+require %(thor)
+
 module CLI
   class << self
     def run
