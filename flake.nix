@@ -9,9 +9,16 @@
         system = "x86_64";
         specialArgs = { };
         modules = [
-          {
-            nixpkgs.config.allowUnfree = true;
-          }
+          ({ pkgs, ... }: {
+            networking.hostName = "yggdrasil";
+            users.uers.luis = {
+              isNormalUser = true;
+              home = "/home/luis";
+              description = "luis";
+            };
+            time.timeZone = "UTC";
+            services.openssh.enable = true;
+          })
         ];
       };
     };
