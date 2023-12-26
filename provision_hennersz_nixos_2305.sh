@@ -16,5 +16,6 @@ fi
 
 cd $DIR || return 
 
-nix flake update
-nix flake show
+nixos-rebuild switch --flake ".#yggdrasil"
+# nix flake update
+# nix flake show
