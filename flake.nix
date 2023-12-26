@@ -1,7 +1,11 @@
 {
   description = "yggdrasil, world system tree";
 
-  inputs = { };
+  inputs = {
+    nixpkgs = {
+      url = github:NixOS/nixpkgs?branch=release-24.05;
+    };
+  };
 
   outputs = { self, nixpkgs }: {
     nixosConfigurations = {
@@ -10,6 +14,7 @@
         specialArgs = { };
         modules = [
           ({ pkgs, ... }: {
+            system.stateVersion = "24.05";
             networking.hostName = "yggdrasil";
             users.users.luis = {
               isNormalUser = true;
