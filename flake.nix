@@ -11,7 +11,7 @@
         modules = [
           ({ pkgs, ... }: {
             networking.hostName = "yggdrasil";
-            users.uers.luis = {
+            users.users.luis = {
               isNormalUser = true;
               home = "/home/luis";
               description = "luis";
