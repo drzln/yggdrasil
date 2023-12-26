@@ -6,7 +6,7 @@
   outputs = { self, nixpkgs }: {
     nixosConfigurations = {
       yggdrasil = nixpkgs.lib.nixosSystem {
-        system = "x86_64";
+        system = "x86_64-linux";
         specialArgs = { };
         modules = [
           ({ pkgs, ... }: {
