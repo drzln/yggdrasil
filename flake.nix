@@ -20,17 +20,17 @@
               isNormalUser = true;
               home = "/home/luis";
               description = "luis";
+              packages = [ pkgs.home-manager ];
             };
             time.timeZone = "UTC";
             services.openssh.enable = true;
+            home-manager.users.luis = { ... }: {
+              programs.home-manager.enable = true;
+              home.stateVersion = "24.05";
+            };
           })
         ];
       };
     };
-
-    # packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-    # packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-
   };
 }
