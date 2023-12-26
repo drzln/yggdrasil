@@ -9,7 +9,7 @@
         system = "x86_64";
         specialArgs = { };
         modules = [
-          {}: {
+          {
             nixpkgs.config.allowUnfree = true;
           }
         ];
