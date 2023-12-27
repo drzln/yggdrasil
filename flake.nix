@@ -37,7 +37,6 @@
               system.stateVersion = "23.11";
               boot.loader.grub = {
                 enable = true;
-                version = 2;
                 device = "nodev";
               };
               fileSystems."/" = {
