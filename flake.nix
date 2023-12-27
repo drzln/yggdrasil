@@ -14,10 +14,12 @@
 
   outputs = { self, nixpkgs, home-manager, ... }:
     let
+      system = "x86_64-linux";
       fcitx = self: super: {
         fcitx-engines = super.fcitx5;
       };
       pkgs = import nixpkgs {
+        inherit system;
         overlays = [
           fcitx
         ];
@@ -25,8 +27,9 @@
     in
     {
       nixosConfigurations = {
+        # a vagrantbox
         yggdrasil = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           specialArgs = { inherit pkgs; };
           modules = [
             home-manager.nixosModules.home-manager
