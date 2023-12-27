@@ -5,6 +5,9 @@
     nixpkgs = {
       url = github:NixOS/nixpkgs?branch=release-24.05;
     };
+    home-manager = {
+      url = github:drzln/home-manager?branch=release-24.05;
+    };
   };
 
   outputs = { self, nixpkgs }: {
