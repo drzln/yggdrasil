@@ -6,7 +6,7 @@
       url = github:NixOS/nixpkgs?branch=release-24.05;
     };
     home-manager = {
-      url = github:drzln/home-manager?branch=release-24.05;
+      url = github:drzln/home-manager?branch=release-23.05;
       # home-manager's nixpkgs dependency is the same as ours
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -32,7 +32,7 @@
             services.openssh.enable = true;
             home-manager.users.luis = {
               programs.home-manager.enable = true;
-              home.stateVersion = "24.05";
+              home.stateVersion = "23.05";
               home.sessionVariables = {
                 EDITOR = "vim";
               };
