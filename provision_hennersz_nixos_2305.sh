@@ -16,4 +16,4 @@ fi
 
 cd $DIR || return
 
-nixos-rebuild switch --flake '.#yggdrasil'
+nixos-rebuild switch --flake '.#yggdrasil' --show-trace
