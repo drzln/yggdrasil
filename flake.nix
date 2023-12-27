@@ -1,8 +1,20 @@
 {
   description = "yggdrasil, world system tree";
-  inputs = import ./inputs/default.nix;
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  inputs =
+    {
+      nixpkgs = {
+        url = github:NixOS/nixpkgs?branch=release-23.11;
+      };
+      home-manager = {
+        url = github:nix-community/home-manager?branch=release-23.11;
+        # home-manager's nixpkgs dependency is the same as ours
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+  outputs =
+    { self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       fcitx = self: super: {
@@ -16,44 +28,45 @@
       };
     in
     {
-      nixosConfigurations = {
-        # a vagrantbox
-        yggdrasil = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit pkgs; };
-          modules = [
-            home-manager.nixosModules.home-manager
-            ({ pkgs, ... }: {
-              system.stateVersion = "23.11";
-              boot.loader.grub = {
-                enable = true;
-                device = "nodev";
-              };
-              fileSystems."/" = {
-                device = "/dev/vda1";
-                fsType = "ext4";
-              };
-              networking.hostName = "yggdrasil";
-              networking.useDHCP = false;
-              networking.interfaces.eth0.useDHCP = true;
-              users.users.luis = {
-                isNormalUser = true;
-                home = "/home/luis";
-                description = "luis";
-                packages = [ pkgs.home-manager ];
-              };
-              time.timeZone = "UTC";
-              services.openssh.enable = true;
-              home-manager.users.luis = {
-                programs.home-manager.enable = true;
-                home.stateVersion = "23.11";
-                home.sessionVariables = {
-                  EDITOR = "vim";
+      nixosConfigurations =
+        {
+          # a vagrantbox
+          yggdrasil = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = { inherit pkgs; };
+            modules = [
+              home-manager.nixosModules.home-manager
+              ({ pkgs, ... }: {
+                system.stateVersion = "23.11";
+                boot.loader.grub = {
+                  enable = true;
+                  device = "nodev";
                 };
-              };
-            })
-          ];
+                fileSystems."/" = {
+                  device = "/dev/vda1";
+                  fsType = "ext4";
+                };
+                networking.hostName = "yggdrasil";
+                networking.useDHCP = false;
+                networking.interfaces.eth0.useDHCP = true;
+                users.users.luis = {
+                  isNormalUser = true;
+                  home = "/home/luis";
+                  description = "luis";
+                  packages = [ pkgs.home-manager ];
+                };
+                time.timeZone = "UTC";
+                services.openssh.enable = true;
+                home-manager.users.luis = {
+                  programs.home-manager.enable = true;
+                  home.stateVersion = "23.11";
+                  home.sessionVariables = {
+                    EDITOR = "vim";
+                  };
+                };
+              })
+            ];
+          };
         };
-      };
     };
 }
