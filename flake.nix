@@ -24,9 +24,15 @@
             boot.loader.grub = {
               enable = true;
               version = 2;
-              device = "/dev/vda"; # Adjust to your VM's disk, often vda or sda for KVM
+              device = "nodev";
+            };
+            fileSystems."/" = {
+              device = "/dev/vda1";
+              fsType = "ext4";
             };
             networking.hostName = "yggdrasil";
+            networking.useDHCP = false;
+            networking.interfaces.eth0.useDHCP = true;
             users.users.luis = {
               isNormalUser = true;
               home = "/home/luis";
