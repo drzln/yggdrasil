@@ -21,6 +21,11 @@
           home-manager.nixosModules.home-manager
           ({ pkgs, ... }: {
             system.stateVersion = "24.05";
+            boot.loader.grub = {
+              enable = true;
+              version = 2;
+              device = "/dev/vda"; # Adjust to your VM's disk, often vda or sda for KVM
+            };
             networking.hostName = "yggdrasil";
             users.users.luis = {
               isNormalUser = true;
