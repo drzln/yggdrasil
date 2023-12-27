@@ -1,6 +1,6 @@
 {
   description = "yggdrasil, world system tree";
-  inputs = import ./inputs;
+  inputs = import ./inputs/default.nix;
 
   outputs = { self, nixpkgs, home-manager, ... }:
     let
