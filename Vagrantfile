@@ -19,8 +19,8 @@ Vagrant.configure(%(2)) do |config|
 
     nixos.vm.box = %(hennersz/nixos-23.05)
     nixos.vm.provider :libvirt do |p|
-      p.memory  = 4096
-      p.cpus    = 4
+      p.memory  = 8192
+      p.cpus    = 8
     end
 
     nixos.vm.provision %(shell), path: %(provision_hennersz_nixos_2305.sh)
