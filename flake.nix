@@ -18,10 +18,8 @@
         system = "x86_64-linux";
         specialArgs = { };
         modules = [
+          home-manager.nixosModules.home-manager
           ({ pkgs, ... }: {
-            imports = [
-              home-manager.nixosModules.home-manager
-            ];
             system.stateVersion = "24.05";
             networking.hostName = "yggdrasil";
             users.users.luis = {
