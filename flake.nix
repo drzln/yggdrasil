@@ -7,16 +7,21 @@
     };
     home-manager = {
       url = github:drzln/home-manager?branch=release-24.05;
+      # home-manager's nixpkgs dependency is the same as ours
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager }: {
+  outputs = { self, nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       yggdrasil = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { };
         modules = [
           ({ pkgs, ... }: {
+            imports = [
+              home-manager.nixosModules.home-manager
+            ];
             system.stateVersion = "24.05";
             networking.hostName = "yggdrasil";
             users.users.luis = {
